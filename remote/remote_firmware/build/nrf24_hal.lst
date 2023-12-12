@@ -1,0 +1,147 @@
+ARM GAS  /run/user/1000/cczq5mE3.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.arch armv7-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"nrf24_hal.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.file 1 "Core/Src/nrf24_hal.c"
+  18              		.section	.text.nRF24_GPIO_Init,"ax",%progbits
+  19              		.align	1
+  20              		.global	nRF24_GPIO_Init
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  25              	nRF24_GPIO_Init:
+  26              	.LFB127:
+   1:Core/Src/nrf24_hal.c **** #include "nrf24_hal.h"
+   2:Core/Src/nrf24_hal.c **** 
+   3:Core/Src/nrf24_hal.c **** 
+   4:Core/Src/nrf24_hal.c **** // Configure the GPIO lines of the nRF24L01 transceiver
+   5:Core/Src/nrf24_hal.c **** // note: IRQ pin must be configured separately
+   6:Core/Src/nrf24_hal.c **** void nRF24_GPIO_Init(void) {
+  27              		.loc 1 6 28 view -0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31              		@ link register save eliminated.
+   7:Core/Src/nrf24_hal.c **** }
+  32              		.loc 1 7 1 view .LVU1
+  33 0000 7047     		bx	lr
+  34              		.cfi_endproc
+  35              	.LFE127:
+  37              		.section	.text.nRF24_LL_RW,"ax",%progbits
+  38              		.align	1
+  39              		.global	nRF24_LL_RW
+  40              		.syntax unified
+  41              		.thumb
+  42              		.thumb_func
+  44              	nRF24_LL_RW:
+  45              	.LVL0:
+  46              	.LFB128:
+   8:Core/Src/nrf24_hal.c **** 
+   9:Core/Src/nrf24_hal.c **** // Low level SPI transmit/receive function (hardware depended)
+  10:Core/Src/nrf24_hal.c **** // input:
+  11:Core/Src/nrf24_hal.c **** //   data - value to transmit via SPI
+  12:Core/Src/nrf24_hal.c **** // return: value received from SPI
+  13:Core/Src/nrf24_hal.c **** uint8_t nRF24_LL_RW(uint8_t data) {
+  47              		.loc 1 13 35 view -0
+ARM GAS  /run/user/1000/cczq5mE3.s 			page 2
+
+
+  48              		.cfi_startproc
+  49              		@ args = 0, pretend = 0, frame = 16
+  50              		@ frame_needed = 0, uses_anonymous_args = 0
+  51              		.loc 1 13 35 is_stmt 0 view .LVU3
+  52 0000 00B5     		push	{lr}
+  53              	.LCFI0:
+  54              		.cfi_def_cfa_offset 4
+  55              		.cfi_offset 14, -4
+  56 0002 87B0     		sub	sp, sp, #28
+  57              	.LCFI1:
+  58              		.cfi_def_cfa_offset 32
+  59 0004 8DF80F00 		strb	r0, [sp, #15]
+  14:Core/Src/nrf24_hal.c **** 	 // Wait until TX buffer is empty
+  15:Core/Src/nrf24_hal.c **** 	while (nRF24_SPI_PORT.State != HAL_SPI_STATE_READY);
+  60              		.loc 1 15 2 is_stmt 1 view .LVU4
+  61              	.L3:
+  62              		.loc 1 15 30 discriminator 1 view .LVU5
+  63              		.loc 1 15 23 is_stmt 0 discriminator 1 view .LVU6
+  64 0008 0B4B     		ldr	r3, .L5
+  65 000a 93F85130 		ldrb	r3, [r3, #81]	@ zero_extendqisi2
+  66 000e DBB2     		uxtb	r3, r3
+  67              		.loc 1 15 30 discriminator 1 view .LVU7
+  68 0010 012B     		cmp	r3, #1
+  69 0012 F9D1     		bne	.L3
+  16:Core/Src/nrf24_hal.c **** 	uint8_t rx_buffer = 0;
+  70              		.loc 1 16 2 is_stmt 1 view .LVU8
+  71              		.loc 1 16 10 is_stmt 0 view .LVU9
+  72 0014 0023     		movs	r3, #0
+  73 0016 8DF81730 		strb	r3, [sp, #23]
+  17:Core/Src/nrf24_hal.c **** 	HAL_SPI_TransmitReceive(&nRF24_SPI_PORT, &data, &rx_buffer, 1, 100);
+  74              		.loc 1 17 2 is_stmt 1 view .LVU10
+  75 001a 6423     		movs	r3, #100
+  76 001c 0093     		str	r3, [sp]
+  77 001e 0123     		movs	r3, #1
+  78 0020 0DF11702 		add	r2, sp, #23
+  79 0024 0DF10F01 		add	r1, sp, #15
+  80 0028 0348     		ldr	r0, .L5
+  81              	.LVL1:
+  82              		.loc 1 17 2 is_stmt 0 view .LVU11
+  83 002a FFF7FEFF 		bl	HAL_SPI_TransmitReceive
+  84              	.LVL2:
+  18:Core/Src/nrf24_hal.c **** 	// Return received byte
+  19:Core/Src/nrf24_hal.c **** 	return rx_buffer;
+  85              		.loc 1 19 2 is_stmt 1 view .LVU12
+  20:Core/Src/nrf24_hal.c **** }
+  86              		.loc 1 20 1 is_stmt 0 view .LVU13
+  87 002e 9DF81700 		ldrb	r0, [sp, #23]	@ zero_extendqisi2
+  88 0032 07B0     		add	sp, sp, #28
+  89              	.LCFI2:
+  90              		.cfi_def_cfa_offset 4
+  91              		@ sp needed
+  92 0034 5DF804FB 		ldr	pc, [sp], #4
+  93              	.L6:
+  94              		.align	2
+  95              	.L5:
+  96 0038 00000000 		.word	hspi1
+  97              		.cfi_endproc
+ARM GAS  /run/user/1000/cczq5mE3.s 			page 3
+
+
+  98              	.LFE128:
+ 100              		.text
+ 101              	.Letext0:
+ 102              		.file 2 "/nix/store/g29lld3lmg7r15jj0vsvlvyxcrw1fpmx-gcc-arm-embedded-12.2.rel1/arm-none-eabi/incl
+ 103              		.file 3 "/nix/store/g29lld3lmg7r15jj0vsvlvyxcrw1fpmx-gcc-arm-embedded-12.2.rel1/arm-none-eabi/incl
+ 104              		.file 4 "Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h"
+ 105              		.file 5 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h"
+ 106              		.file 6 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma.h"
+ 107              		.file 7 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_spi.h"
+ 108              		.file 8 "Core/Inc/spi.h"
+ARM GAS  /run/user/1000/cczq5mE3.s 			page 4
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 nrf24_hal.c
+/run/user/1000/cczq5mE3.s:19     .text.nRF24_GPIO_Init:0000000000000000 $t
+/run/user/1000/cczq5mE3.s:25     .text.nRF24_GPIO_Init:0000000000000000 nRF24_GPIO_Init
+/run/user/1000/cczq5mE3.s:38     .text.nRF24_LL_RW:0000000000000000 $t
+/run/user/1000/cczq5mE3.s:44     .text.nRF24_LL_RW:0000000000000000 nRF24_LL_RW
+/run/user/1000/cczq5mE3.s:96     .text.nRF24_LL_RW:0000000000000038 $d
+
+UNDEFINED SYMBOLS
+HAL_SPI_TransmitReceive
+hspi1

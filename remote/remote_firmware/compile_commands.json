@@ -1,0 +1,30 @@
+[
+  {
+    "arguments": [
+      "/nix/store/g29lld3lmg7r15jj0vsvlvyxcrw1fpmx-gcc-arm-embedded-12.2.rel1/bin/arm-none-eabi-gcc",
+      "-c",
+      "-mcpu=cortex-m3",
+      "-mthumb",
+      "-DUSE_HAL_DRIVER",
+      "-DSTM32F103xB",
+      "-ICore/Inc",
+      "-IDrivers/STM32F1xx_HAL_Driver/Inc",
+      "-IDrivers/STM32F1xx_HAL_Driver/Inc/Legacy",
+      "-IDrivers/CMSIS/Device/ST/STM32F1xx/Include",
+      "-IDrivers/CMSIS/Include",
+      "-Og",
+      "-Wall",
+      "-fdata-sections",
+      "-ffunction-sections",
+      "-g",
+      "-gdwarf-2",
+      "-Wa,-a,-ad,-alms=build/main.lst",
+      "-o",
+      "build/main.o",
+      "Core/Src/main.c"
+    ],
+    "directory": "/home/jasshank/proj/tiny_stanley/remote_firmware",
+    "file": "/home/jasshank/proj/tiny_stanley/remote_firmware/Core/Src/main.c",
+    "output": "/home/jasshank/proj/tiny_stanley/remote_firmware/build/main.o"
+  }
+]
